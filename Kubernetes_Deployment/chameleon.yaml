@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chameleon-proxy
+spec: 
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1        # how many pods we can add at a time
+      maxUnavailable: 1  # maxUnavailable define how many pods can be unavailable
+                         # during the rolling update
+  selector:
+    matchLabels:
+      app: chameleon-proxy
+  template:
+    metadata:
+      labels:
+        app: chameleon-proxy
+    spec:
+      containers:
+      - name: chameleon-proxy-app
+        image: jsantosbruv/chameleon-proxy
+        resources:
+          requests:
+            cpu: 30.9
+            memory: 100Gi
+          limits:
+            cpu: 30.9
+            memory: 100Gi
+        ports:
+        - containerPort: 8443
+          name: chameleon-proxy
+      imagePullSecrets:
+      - name: regcred
+      nodeSelector:
+        type: ch
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: chameleon-proxy-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8443
+    targetPort: 8443
+  selector:
+    app: chameleon-proxy
+---

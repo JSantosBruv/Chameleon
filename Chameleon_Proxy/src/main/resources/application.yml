@@ -1,0 +1,83 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: ignore
+          uri: no://op
+          filter: SetStatus
+          predicates:
+            - Path=/config/schema
+        - id: search
+          uri: https://chameleon-es-http:9200
+          filters:
+            - name: PreSearchAPIFilter
+            - name: PostSearchAPIFilter
+          predicates:
+            - Path=/*/_search
+            - Method=GET,POST
+        - id: asynch_search
+          uri: https://chameleon-es-http:9200
+          filters:
+            - name: PreSearchAPIFilter
+            - name: PostAsynchSearchAPIFilter
+          predicates:
+            - Path=/*/_async_search
+            - Method=GET,POST
+        - id: bulk
+          uri: https://chameleon-es-http:9200
+          filters:
+            - name: PreBulkAPIFilter
+          predicates:
+            - Path=/_bulk
+            - Method=POST
+        - id: index
+          uri: https://chameleon-es-http:9200
+          filters:
+            - name: PreIndexAPIFilter
+          predicates:
+            - Path=/*/_doc/*,/*/_doc,/*/_create/*
+            - Method=POST,PUT
+        - id: deleteIndex
+          uri: https://chameleon-es-http:9200
+          filters:
+            - name: PreDeleteIndexAPIFilter
+          predicates:
+            - Path=/*
+            - Method=DELETE
+        - id: getDoc
+          uri: https://chameleon-es-http:9200
+          filters:
+            - name: PostGetAPIFilter
+          predicates:
+            - Path=/*/_doc/*
+            - Method=GET
+        - id: createUpdateUser
+          uri: https://chameleon-es-http:9200
+          filters:
+            - name: PreCreateUpdateUserAPIFilter
+          predicates:
+            - Path=/_security/user/*
+            - Method=POST,PUT
+        - id: getUser
+          uri: https://chameleon-es-http:9200
+          filters:
+            - name: PreGetUserAPIFilter
+            - name: PostGetUserAPIFilter
+          predicates:
+            - Path=/_security/user/*
+            - Method=GET
+        - id: deleteUser
+          uri: https://chameleon-es-http:9200
+          filters:
+            - name: PreDeleteUserAPIFilter
+          predicates:
+            - Path=/_security/user
+            - Method=DELETE
+        - id: all
+          uri: https://chameleon-es-http:9200
+          predicates:
+            - Path=/**
+            - Method=GET,POST,PUT,DELETE,HEAD
+      httpclient:
+        ssl:
+          useInsecureTrustManager: true
