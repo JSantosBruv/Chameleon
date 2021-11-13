@@ -49,11 +49,11 @@ similar to those found on reference elastic storage solutions.
 
 #### System Model Overview:
 
-![alt text](http://url/to/img.png)
+![alt text](Figures/model.png)
 
 #### Architectural Components Overview:
 
-![alt text](http://url/to/img.png)
+![alt text](Figures/arch.png)
 
 #### Components Summary:
 * __Chameleon Proxy__: Acts as a proxy which filters requests and extracts the necessary data to be processed by the Chameleon Operator.
@@ -83,4 +83,16 @@ Supports the same queries as the Search API.
   * __Get User__: Retrieve an encrypted user from the Native Realm;
   * __Delete User__: Delete an encrypted user from the Native Realm.
 
+## How to Play with my Prototype
 
+### Tested Prototype requires
+* Java 11
+* Elasticsearch 7.+
+* Maven 3.6.3
+* Docker 20.10.7
+* Kubernetes 1.19+.
+
+#### Kubernetes Deployment (Recommended)
+The stable deployment version requires a Kubernetes Cluster, either a remote cloud-based cluster or a local emulator, such as [Minikube](https://minikube.sigs.k8s.io).
+
+Script [chameleon-deployment.sh](chameleon-deployment.sh) should be run on in its current folder to create and deploy Chameleon and Elasticsearch on the Kubernetes cluster.
