@@ -1,5 +1,5 @@
 # Chameleon
- A Secure Cloud-Enabled and Queryable System with Elastic Properties
+ A Secure Cloud-Enabled and Queryable System with Elastic Properties[[1](#thesis)]
 
 ## Motivation
 Nowadays, applicational logging and the use of cloud-based services are a recurring solution when it comes to managing critical business applications. Resorting to cloud
@@ -96,3 +96,7 @@ Supports the same queries as the Search API.
 The stable deployment version requires a Kubernetes Cluster, either a remote cloud-based cluster or a local emulator, such as [Minikube](https://minikube.sigs.k8s.io).
 
 Script [chameleon-deployment.sh](chameleon-deployment.sh) should be run on in its current folder to create and deploy Chameleon and Elasticsearch on the Kubernetes cluster.
+
+#### Docker Based Deployment ()
+## Reference
+<a name="thesis">1.</a> João Santos. Chameleon: A Secure Cloud-Enabled and Queryable System with Elastic Properties, MSc Thesis. Universidade Nova de Lisboa, 2021.
