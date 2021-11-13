@@ -2,17 +2,7 @@ deploy_WebApp(){
 
   printf "\nBuilding and Deploying Chameleon Proxy Kubernetes Cluster...\n\n"
 
-  printf "\nCreating Kubernetes Cluster Credentials for Private Repo...\n\n"
-  
-  kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v2/ \
-  --docker-username=jsantosbruv --docker-password=Y2hhbWVsZW9uUHJveHkhMjAyMQ== \
-  --docker-email=jmfd.santos@campus.fct.unl.pt
-  
-  printf "\nCreating Kubernetes Cluster Credentials for Private Repo Done.\n\n"
-
   printf "\nInstalling ECK Operator in Kubernetes Cluster\n\n"
-  #kubectl create -f https://download.elastic.co/downloads/eck/1.8.0/crds.yaml
-  #kubectl apply -f https://download.elastic.co/downloads/eck/1.8.0/operator.yaml
   kubectl apply -f https://download.elastic.co/downloads/eck/1.6.0/all-in-one.yaml
   printf "\nInstalling ECK Operator in Kubernetes Cluster Done.\n\n"
 
@@ -47,15 +37,6 @@ deploy_WebApp(){
 
   mvn -f Chameleon_Proxy/ package -U
 
-  printf "\nBuilding Chameleon Proxy Docker Image...\n\n"
-  docker build -t "$IMAGE" .
-  printf "\nBuilding Chameleon Proxy Docker Image Done.\n\n"
-
-  printf "\nPushing Chameleon Proxy Docker Image to Docker Hub...\n\n"
-  docker login -u jsantosbruv -p Y2hhbWVsZW9uUHJveHkhMjAyMQ==
-  docker push "$IMAGE"
-  printf "\nPushing Chameleon Proxy Docker Image to Docker Hub Done.\n\n"
-
   printf "\nDeploying Chameleon Proxy to Kubernetes Cluster...\n\n"
   kubectl apply -f Kubernetes_Deployment/chameleon.yaml
   kubectl rollout restart deployment chameleon-proxy
@@ -74,34 +55,3 @@ deploy_WebApp(){
 IMAGE="jsantosbruv/chameleon-proxy"
 
 deploy_WebApp 
-# mvn -f Chameleon_Proxy/ package -U
-
-#  printf "\nBuilding Chameleon Proxy Docker Image...\n\n"
-# docker build -t jsantosbruv/chameleon-proxy .
-# printf "\nBuilding Chameleon Proxy Docker Image Done.\n\n"
-
-# printf "\nPushing Chameleon Proxy Docker Image to Docker Hub...\n\n"
-# docker login -u jsantosbruv -p Y2hhbWVsZW9uUHJveHkhMjAyMQ==
-# docker push jsantosbruv/chameleon-proxy
-# printf "\nPushing Chameleon Proxy Docker Image to Docker Hub Done.\n\n"
-
-# printf "\nDeploying Chameleon Proxy to Kubernetes Cluster...\n\n"
-# kubectl apply -f Kubernetes_Deployment/chameleon.yaml
-# kubectl rollout restart deployment chameleon-proxy
-
-
-# 26.5 37.5
-# 25   52
-# 26.34 33.72
-# 24   32.68
-# 21  29.4
-# 24.61 27.38
-
-# Single : 29 - 21
-# Multi: 50 - 12
-
-
-#padroes
-#> >
-#variabilidade
-
