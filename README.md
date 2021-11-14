@@ -85,6 +85,15 @@ Supports the same queries as the Search API.
   * __Get User__: Retrieve an encrypted user from the Native Realm;
   * __Delete User__: Delete an encrypted user from the Native Realm.
 
+### Tech Stack
+* __Java 11__
+* __Spring Projects__ : Boot, Cloud Gateway, Security
+* __Elasticsearch__
+* __Docker__
+* __Kubernetes__
+* __Maven__
+
+
 ## How to Play with my Prototype
 
 ### Tested Prototype requires
