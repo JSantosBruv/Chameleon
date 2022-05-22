@@ -114,3 +114,4 @@ Script [chameleon-deployment.sh](chameleon-deployment.sh) should be run on in it
 
 ## References
 <a name="thesis">1.</a> João Santos. Chameleon: A Secure Cloud-Enabled and Queryable System with Elastic Properties, MSc Thesis. Universidade Nova de Lisboa, 2021.
+https://run.unl.pt/handle/10362/135419
