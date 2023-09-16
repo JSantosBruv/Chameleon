@@ -1,7 +1,7 @@
 # Chameleon: A Secure Cloud-Enabled and Queryable System with Elastic Properties
 
 Prototype of the Chameleon System, a proxy middleware capable of providing data analysis upon ciphered documents stored in Elasticsearch. 
-Prototype derived from the underlying Master Thesis [[1](#thesis)] written and implemented by [João Santos](https://www.linkedin.com/in/jsantos-js/).
+Prototype derived from the underlying Master Thesis [[1](#thesis)] written and implemented by [João Santos](https://www.linkedin.com/in/joaosantosjs/).
 
 ## Motivation
 Nowadays, applicational logging and the use of cloud-based services are a recurring solution when it comes to managing critical business applications. Resorting to cloud
